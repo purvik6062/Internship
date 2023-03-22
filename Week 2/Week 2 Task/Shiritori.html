@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        class Shiritori {
+            constructor() {
+                this.words = [];
+                this.game_over = false;
+            }
+
+            play(s) {
+                if (this.words.length === 0) {
+                    this.words.push(s);
+                    return this.words;
+                }
+                for (let i = 0; i < this.words.length; i++) {
+                    if (this.words[i] === s) {
+                        this.game_over = true;
+                        return "game over";
+                    }
+                }
+                let lastword = this.words[this.words.length - 1];
+                if (lastword[lastword.length - 1] === s[0]) {
+                    this.words.push(s);
+                    return this.words;
+                }
+                this.game_over = true;
+                return "game over";
+            }
+
+            restart() {
+                this.words = [];
+                this.game_over = false;
+                return "game restarted";
+            }
+        }
+
+
+        const game = new Shiritori();
+
+        console.log(game.words);    // Output: []
+        // First word
+        console.log(game.play("apple")); // Output: ['apple']
+
+        // Second word
+        console.log(game.play("ear")); // Output: ['apple', 'ear']
+
+        // Third word
+        console.log(game.play("rhino")); // Output: ['apple', 'ear', 'rhino']
+
+        // Fourth word
+        console.log(game.play("ocelot")); // Output: ['apple', 'ear', 'rhino', 'ocelot']
+
+        // Fifth word
+        console.log(game.play("game")); // Output: 'game over'
+
+        // Restart game
+        console.log(game.restart()); // Output: 'game restarted'
+
+        console.log(game.words);    // Output: []
+
+
+
+
+
+
+    </script>
+</body>
+</html>

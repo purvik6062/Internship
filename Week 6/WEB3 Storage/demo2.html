@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>web3.storage</title>
+    <style>
+      body {
+        font-size: 16px;
+        font-family: -apple-system, system-ui;
+        padding: 0;
+        margin: 0;
+      }
+      form {
+        width: 500px;
+        padding: 16px;
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+        color: #333;
+      }
+      label {
+        display: block;
+        padding: 32px 0 8px;
+        font-weight: 700;
+      }
+      #token {
+        width: 100%;
+        padding: 4px;
+        font-size: 1.2rem;
+      }
+      #output {
+        display: block;
+        padding: 16px;
+        margin: 0;
+        color: lime;
+        background: #222;
+        font-family: Courier New, ui-monospace, monospace;
+        font-weight: 500;
+        line-height: 1.6;
+        position: fixed;
+        bottom: 0;
+        height: 33.3%;
+        width: 100%;
+        overflow-y: scroll;
+      }
+      #output a {
+        color: aqua;
+      }
+      input[type="submit"] {
+        display: block;
+        padding: 4px 16px;
+        font-weight: 700;
+        font-size: 16px;
+        margin-top: 32px;
+      }
+      h1 {
+        text-align: center;
+        font-size: 24px;
+      }
+      h1 span {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        ⁂
+        <span>web3.storage</span>
+      </h1>
+    </header>
+    <form>
+      <label for="token">Enter your Web3.Storage API token:</label>
+      <input type="password" id="token" required />
+      <br />
+      <label for="file">Select files to upload:</label>
+      <input type="file" id="file" multiple required />
+      <br />
+      <button id="submit">Upload Files</button>
+    </form>
+
+    <div id="output"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3.storage/dist/bundle.esm.min.js">
+      const form = document.querySelector("form");
+      const tokenInput = document.querySelector("#token");
+      const fileInput = document.querySelector("#file");
+      const output = document.querySelector("#output");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const token = tokenInput.value;
+        const client = new window.Web3Storage({ token });
+        const cid = await client.put(fileInput.files);
+
+        const url = `https://dweb.link/ipfs/${cid}`;
+        output.innerHTML = `<a href="${url}" target="_blank">${url}</a>`;
+      });
+    </script>
+  </body>
+</html>
