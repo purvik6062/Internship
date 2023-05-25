@@ -12,6 +12,12 @@ import EventBind from './components/EventBind';
 import ParentComponent from './components/ParentComponent';
 import UserGreeting from './components/UserGreeting';
 import NameList from './components/NameList';
+import Forms from './components/Forms';
+import LifecycleA from './components/LifecycleA';
+import ClickCounter from './components/ClickCounter';
+import HoverCounter from './components/HoverCounter';
+import { UserProvider } from './components/UserContext';
+import ComponentC from './components/ComponentC';
 
 // function App() {
 //   return (
@@ -26,7 +32,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NameList />
+        {/* <UserProvider value='Purvik'> */}
+        <ComponentC />
+        {/* </UserProvider> */}
+
+        {/* <HoverCounter /> */}
+
+        {/* <ClickCounter /> */}
+        {/* <Hero heroName="Batman" />
+				<Hero heroName="Superman" />
+				<ErrorBoundary>
+					<Hero heroName="Joker" />
+				</ErrorBoundary> */}
+        {/* <LifecycleA /> */}
+        {/* <Forms /> */}
+        {/* <NameList /> */}
         {/* <UserGreeting /> */}
         {/* <ParentComponent /> */}
         {/* <EventBind /> */}

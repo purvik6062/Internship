@@ -1,8 +1,8 @@
-const {mongoose} = require('mongoose');
+const { mongoose } = require('mongoose');
 
-mongoose.connect("mongodb://127.0.0.1:27017/mydb2" ,{
-useNewUrlParser: true,
-useUnifiedTopology: true
+mongoose.connect("mongodb://127.0.0.1:27017/mydb2", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 }).then(() => {
     console.log("Connection Successful");
 }).catch((err) => {
@@ -20,16 +20,16 @@ const schemaEx = new mongoose.Schema({
 const collection1 = new mongoose.model("Students", schemaEx);
 
 
-const createDocument = async ()=>{
+const createDocument = async () => {
     try {
-        const data = new collection1 ({
+        const data = new collection1({
             name: 'RDJ',
             age: 35,
             detective: true
         })
-    
+
         const result = await data.save();
-        console.log("Collection created",result);   
+        console.log("Collection created", result);
     } catch (error) {
         console.log(error);
     }
